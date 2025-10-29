@@ -1,0 +1,49 @@
+package unique
+
+import (
+	"runtime"
+	"strings"
+	"unique"
+
+	"github.com/xoctopus/internal/pkg/mem"
+)
+
+const (
+	SCALE          = 1000000
+	STRING_LENGTH  = 20
+	DISTINCT_COUNT = 1000
+)
+
+var seed = make([]string, DISTINCT_COUNT)
+
+func init() {
+	for i := 0; i < DISTINCT_COUNT; i++ {
+		seed[i] = strings.Repeat(string(rune('A'+i%26)), STRING_LENGTH)
+	}
+}
+
+func Unique() {
+	data := make([]unique.Handle[string], SCALE)
+	for i := 0; i < SCALE; i++ {
+		data[i] = unique.Make(seed[i%DISTINCT_COUNT])
+	}
+
+	runtime.GC()
+
+	mem.OutputUsage("Unique")
+
+	runtime.KeepAlive(data)
+}
+
+func WithoutUnique() {
+	data := make([]string, SCALE)
+	for i := 0; i < SCALE; i++ {
+		data[i] = data[i%DISTINCT_COUNT]
+	}
+
+	runtime.GC()
+
+	mem.OutputUsage("WithoutUnique")
+
+	runtime.KeepAlive(data)
+}
