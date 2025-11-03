@@ -18,7 +18,7 @@ func main() {
 
 	must.NoError(
 		genx.NewContext(&genx.Args{
-			Entrypoint: []string{filepath.Join(cwd, "consts")},
+			Entrypoint: []string{filepath.Join(cwd, "devpkg", "consts")},
 		}).Execute(context.Background(), genx.Get()...),
 	)
 }
