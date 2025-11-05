@@ -3,7 +3,7 @@ module github.com/xoctopus/internal
 go 1.25.1
 
 require (
-	github.com/xoctopus/enumx v0.1.1-0.20251029042626-1c6eed9428e0
+	github.com/xoctopus/enumx v0.1.1-0.20251105041302-4903b9136acb
 	github.com/xoctopus/genx v0.1.0
 	github.com/xoctopus/x v0.2.0
 )
