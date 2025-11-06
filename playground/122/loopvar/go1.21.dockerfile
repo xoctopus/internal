@@ -1,8 +1,8 @@
-FROM golang:1.22-alpine AS builder
+FROM golang:1.21-alpine AS builder
 
 WORKDIR /go/src
-COPY ./loopvar.go   ./loopvar.go
-COPY ./go.mod.go122 ./go.mod
+COPY loopvar.go   ./loopvar.go
+COPY go.mod.go121 ./go.mod
 
 # build
 #ARG COMMIT_SHA
