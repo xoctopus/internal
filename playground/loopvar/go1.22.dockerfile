@@ -9,7 +9,7 @@ COPY ./go.mod.go122 ./go.mod
 RUN cat go.mod && go build .
 
 # runtime
-FROM golang:1.21-alpine AS runtime
+FROM gcr.io/distroless/static AS runtime
 
 COPY --from=builder /go/src/loopvar /go/bin/loopvar
 EXPOSE 80
