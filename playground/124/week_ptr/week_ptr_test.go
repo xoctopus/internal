@@ -49,9 +49,10 @@ func (e *Events) Notify(content string) {
 	e.observers = alive
 }
 
-type Observer interface {
+type Observer[T any] interface {
 	ID() string
 	OnEvent(string)
+	Underlying() weak.Pointer[T]
 }
 
 type Listener struct {
