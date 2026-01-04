@@ -29,10 +29,7 @@ type Makefile struct {
 	// Depend
 	Depends Depends `json:"depends" cmd:"depends"`
 
-	// entries     []Entry
-	envs        [][2]string
-	isGoProject bool
-	isGitRepo   bool
+	envs [][2]string
 }
 
 func (m *Makefile) init(cmd *cobra.Command) {
@@ -88,7 +85,7 @@ func (m *Makefile) Exec(cmd *cobra.Command, args ...string) (err error) {
 }
 
 func (m *Makefile) vars(w *os.File) {
-	_, _ = w.WriteString(fmt.Sprintf(`
+	_, _ = fmt.Fprintf(w, `
 # go package info
 MODULE_PATH    := $(shell cat go.mod | grep ^module -m 1 | awk '{ print $$2; }' || '')
 MODULE_NAME    := $(shell basename $(MODULE_PATH))
@@ -107,7 +104,7 @@ GIT_TAG    := ""
 GIT_BRANCH := ""
 endif
 BUILD_AT=$(shell date "+%s")
-`, strings.Join(m.TestIgnore, "|"), strings.Join(m.FormatIgnore, ","), "%Y%m%d%H%M%S"))
+`, strings.Join(m.TestIgnore, "|"), strings.Join(m.FormatIgnore, ","), "%Y%m%d%H%M%S")
 
 	_, _ = w.WriteString("\n# global env variables\n")
 	_ = WriteKeyValAlign(w, "export ", ":=", m.envs)
@@ -245,7 +242,10 @@ clean:
 	@find . -name .xgo | xargs rm -rf
 	@rm -rf build/*
 
-pre-commit: dep lint fmt view-cover
+chglog:
+	@git chglog -o CHANGELOG.md
+
+pre-commit: dep fmt lint view-cover chglog
 `
 	_, _ = w.WriteString(text)
 }

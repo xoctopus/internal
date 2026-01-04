@@ -112,4 +112,7 @@ clean:
 	@find . -name .xgo | xargs rm -rf
 	@rm -rf build/*
 
-pre-commit: dep lint fmt view-cover
+chglog:
+	@git chglog -o CHANGELOG.md
+
+pre-commit: dep fmt lint view-cover chglog

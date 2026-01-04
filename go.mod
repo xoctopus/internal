@@ -4,10 +4,10 @@ go 1.25.5
 
 require (
 	github.com/spf13/cobra v1.10.2
-	github.com/xoctopus/confx v0.2.3-0.20260104061128-fae6f296c862
-	github.com/xoctopus/genx v0.1.12-0.20251231142742-4c738384360d
-	github.com/xoctopus/pkgx v0.1.7
-	github.com/xoctopus/sqlx v0.1.13
+	github.com/xoctopus/confx v0.2.3
+	github.com/xoctopus/genx v0.1.13
+	github.com/xoctopus/pkgx v0.1.9
+	github.com/xoctopus/sqlx v0.1.15
 	github.com/xoctopus/x v0.2.11-0.20260103122642-ea3d471657da
 )
 

@@ -26,7 +26,7 @@ func detect(path string) (FileType, error) {
 	if err != nil {
 		return FileTypeUnknown, err
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 
 	buf := make([]byte, 8)
 	n, err := f.Read(buf)
@@ -83,7 +83,7 @@ func DebugInfo(file string) {
 		fmt.Printf("Failed to open Mach-O file: %v\n", err)
 		return
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 
 	fmt.Printf("Mach-O File: %s\n", file)
 	fmt.Println("----------- Mach-O Header -----------")

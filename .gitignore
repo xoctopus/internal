@@ -1,2 +1,4 @@
 devpkg/consts/*.go
 devpkg/models/*.go
+cmd/makegen/makegen
+cmd/devtool/devtool

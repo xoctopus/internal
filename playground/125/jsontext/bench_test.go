@@ -1,3 +1,5 @@
+//go:build jsonv2
+
 package jsontext
 
 import (
