@@ -6,7 +6,7 @@ import (
 	"go/ast"
 	"strings"
 
-	"github.com/xoctopus/pkgx"
+	"github.com/xoctopus/pkgx/pkg/pkgx"
 )
 
 var (
