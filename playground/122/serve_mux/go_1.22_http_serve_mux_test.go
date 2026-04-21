@@ -32,10 +32,10 @@ func ServeMux() http.Handler {
 		fmt.Println("DONE")
 	})
 
-	// mux.HandleFunc("PUT /users/{id...}", func(w http.ResponseWriter, r *http.Request) {
-	// 	fmt.Printf("UPDATING USER... %s\n", r.PathValue("id"))
-	// 	fmt.Println("DONE")
-	// })
+	mux.HandleFunc("PUT /users/{id...}", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Printf("UPDATING USER... %s\n", r.PathValue("id"))
+		fmt.Println("DONE")
+	})
 
 	mux.HandleFunc("PUT /users/{id}/{attribute}", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("UPDATING USER... %s\n", r.PathValue("id"))
@@ -52,10 +52,15 @@ func TestMux(t *testing.T) {
 
 	c := srv.Client()
 
-	_, _ = c.Get(srv.URL + "/users/1")
-	_, _ = c.Post(srv.URL+"/users", "", nil)
-	req, _ := http.NewRequest(http.MethodDelete, srv.URL+"/users/1", nil)
+	req, _ := http.NewRequest(http.MethodGet, srv.URL+"/users/1", nil)
 	_, _ = c.Do(req)
-	req, _ = http.NewRequest(http.MethodPut, srv.URL+"/users/1/name", nil)
+
+	req, _ = http.NewRequest(http.MethodPost, srv.URL+"/users", nil)
+	_, _ = c.Do(req)
+
+	req, _ = http.NewRequest(http.MethodDelete, srv.URL+"/users/1", nil)
+	_, _ = c.Do(req)
+
+	req, _ = http.NewRequest(http.MethodPut, srv.URL+"/users/1/2/3", nil)
 	_, _ = c.Do(req)
 }
