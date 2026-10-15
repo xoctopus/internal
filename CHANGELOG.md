@@ -2,10 +2,11 @@
 <a name="HEAD"></a>
 ## [HEAD](https://github.com/xoctopus/x/compare/v0.0.2...HEAD)
 
-> 2026-04-21
+> 2026-10-15
 
 ### Chore
 
+* examples
 * update dependencies
 
 ### Feat
