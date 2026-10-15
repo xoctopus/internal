@@ -5,7 +5,7 @@ go 1.27.1
 require (
 	dagger.io/dagger v0.21.10
 	github.com/fatih/color v1.19.0
-	github.com/xoctopus/pkgx v0.1.10
+	github.com/xoctopus/pkgx v0.4.4
 	github.com/zeromicro/go-zero v1.10.3
 )
 
@@ -39,7 +39,7 @@ require (
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/titanous/json5 v1.0.0 // indirect
 	github.com/vektah/gqlparser/v2 v2.5.32 // indirect
-	github.com/xoctopus/x v0.2.11-0.20260103122642-ea3d471657da // indirect
+	github.com/xoctopus/x v0.5.8 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 	go.opentelemetry.io/otel v1.41.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.40.0 // indirect
