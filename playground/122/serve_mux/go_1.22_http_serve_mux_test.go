@@ -43,6 +43,16 @@ func ServeMux() http.Handler {
 		fmt.Println("DONE")
 	})
 
+	// unacceptable path {id...} must at tail
+	// mux.HandleFunc("GET /org/{id...}/commit", func(w http.ResponseWriter, r *http.Request) {
+	// 	fmt.Printf("QUERYING ORG...%s\n", r.PathValue("id"))
+	// })
+
+	// unacceptable path {id...} must at tail
+	// mux.HandleFunc("GET /v2/org/{id...}/commit/{version}", func(w http.ResponseWriter, r *http.Request) {
+	// 	fmt.Printf("QUERYING ORG...%s\n", r.PathValue("id"))
+	// })
+
 	return mux
 }
 
@@ -62,5 +72,13 @@ func TestMux(t *testing.T) {
 	_, _ = c.Do(req)
 
 	req, _ = http.NewRequest(http.MethodPut, srv.URL+"/users/1/2/3", nil)
+	_, _ = c.Do(req)
+
+	// panic: parsing "GET /org/{id...}/commit": at offset 9: {...} wildcard not at end [recovered, repanicked]
+	// req, _ = http.NewRequest(http.MethodGet, srv.URL+"/org/1/2/3/commit", nil)
+	// _, _ = c.Do(req)
+
+	// panic: parsing "GET /v2/org/{id...}/commit/{version}": at offset 12: {...} wildcard not at end [recovered, repanicked]
+	req, _ = http.NewRequest(http.MethodGet, srv.URL+"/v2/org/1/2/3/commit/v2", nil)
 	_, _ = c.Do(req)
 }

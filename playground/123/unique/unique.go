@@ -17,14 +17,14 @@ const (
 var seed = make([]string, DISTINCT_COUNT)
 
 func init() {
-	for i := 0; i < DISTINCT_COUNT; i++ {
+	for i := range DISTINCT_COUNT {
 		seed[i] = strings.Repeat(string(rune('A'+i%26)), STRING_LENGTH)
 	}
 }
 
 func Unique() {
 	data := make([]unique.Handle[string], SCALE)
-	for i := 0; i < SCALE; i++ {
+	for i := range SCALE {
 		data[i] = unique.Make(seed[i%DISTINCT_COUNT])
 	}
 
@@ -37,7 +37,7 @@ func Unique() {
 
 func WithoutUnique() {
 	data := make([]string, SCALE)
-	for i := 0; i < SCALE; i++ {
+	for i := range SCALE {
 		data[i] = data[i%DISTINCT_COUNT]
 	}
 

@@ -1,4 +1,18 @@
 
+<a name="HEAD"></a>
+## [HEAD](https://github.com/xoctopus/x/compare/v0.0.2...HEAD)
+
+> 2026-04-21
+
+### Chore
+
+* update dependencies
+
+### Feat
+
+* update serve mux testing
+
+
 <a name="v0.0.2"></a>
 ## v0.0.2
 

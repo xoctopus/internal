@@ -1,0 +1,11 @@
+github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
+github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
+github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
+github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/oklog/ulid/v2 v2.1.2 h1:IEclFb9JNvzYA6MW2SCxbLzcHTVsfqm3PrqGQJH5zec=
+github.com/oklog/ulid/v2 v2.1.2/go.mod h1:rcEKHmBBKfef9DhnvX7y1HZBYxjXb0cP5ExxNsTT1QQ=
+github.com/pborman/getopt v0.0.0-20170112200414-7148bc3a4c30/go.mod h1:85jBQOZwpVEaDAr341tbn15RS4fCAsIst0qp7i8ex1o=
+github.com/xoctopus/sfid v0.1.0 h1:J1Ox4B+s5UDdZqVvU7chOmNsSGL8cIoE7AcAoy18G3Q=
+github.com/xoctopus/sfid v0.1.0/go.mod h1:vLVFFKFJSjOL7Hwyks28KkUDaBplb3zSTH7J75wo0uQ=
+github.com/xoctopus/x v0.4.0 h1:/9u7ivRIFIN1Op8ltNXAs2sycRRcn1OkqWCUZL3yDfM=
+github.com/xoctopus/x v0.4.0/go.mod h1:Lij++DAU2O2DdZ5IB/Svpx88Cgs618Zb2cBSapp1vNs=
