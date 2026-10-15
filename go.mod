@@ -1,6 +1,6 @@
 module github.com/xoctopus/internal
 
-go 1.26.1
+go 1.27.1
 
 require (
 	dagger.io/dagger v0.21.10
