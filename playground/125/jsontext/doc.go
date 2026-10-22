@@ -1,3 +1,0 @@
-// Package jsontext exercises encoding/json/jsontext and json/v2.
-// Run tests with: go test -tags jsonv2 ./...
-package jsontext
