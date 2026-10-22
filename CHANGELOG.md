@@ -2,10 +2,12 @@
 <a name="HEAD"></a>
 ## [HEAD](https://github.com/xoctopus/x/compare/v0.0.2...HEAD)
 
-> 2026-10-15
+> 2026-10-22
 
 ### Chore
 
+* go.mod
+* examples
 * examples
 * update dependencies
 
