@@ -12,6 +12,6 @@ struct Packet {
 };
 
 // C function to modify struct field
-void fill_packet(struct Packet* p);
+void fill_packet(struct Packet* p, uint32_t id, uint16_t flags, uint16_t length);
 
 #endif

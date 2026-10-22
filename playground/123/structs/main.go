@@ -25,7 +25,7 @@ type Packet struct {
 func main() {
 	var p Packet
 
-	C.fill_packet((*C.struct_Packet)(unsafe.Pointer(&p)))
+	C.fill_packet((*C.struct_Packet)(unsafe.Pointer(&p)), 1, 2, 3)
 
 	fmt.Println("After C.fill_packet:")
 	fmt.Printf("ID     = %d\n", p.ID)

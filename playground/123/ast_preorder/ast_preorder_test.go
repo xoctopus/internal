@@ -1,28 +1,65 @@
 package ast_preorder_test
 
 import (
-	"context"
 	"fmt"
 	"go/ast"
+	"go/token"
+	"go/types"
 	"strings"
 
-	"github.com/xoctopus/pkgx/pkg/pkgx"
+	"golang.org/x/tools/go/packages"
 )
 
+const path = "github.com/xoctopus/internal/playground/123/ast_preorder"
+
 var (
-	pkg  pkgx.Package
-	path = "github.com/xoctopus/internal/playground/123/ast_preorder"
+	dataStruct *ast.StructType
+	typesInfo  *types.Info
 )
 
 func init() {
-	pkgs := pkgx.NewPackages(context.Background(), path)
-	pkg = pkgs.Package(path)
+	pkgs, err := packages.Load(&packages.Config{
+		Mode: packages.NeedSyntax | packages.NeedTypes | packages.NeedTypesInfo,
+	}, path)
+	if err != nil {
+		panic(err)
+	}
+	if len(pkgs) != 1 {
+		panic("expected one package")
+	}
+	pkg := pkgs[0]
+	if len(pkg.Errors) != 0 {
+		panic(pkg.Errors[0])
+	}
+	dataStruct = structType(pkg, "Data")
+	typesInfo = pkg.TypesInfo
+}
+
+func structType(pkg *packages.Package, name string) *ast.StructType {
+	for _, f := range pkg.Syntax {
+		for _, decl := range f.Decls {
+			gd, ok := decl.(*ast.GenDecl)
+			if !ok || gd.Tok != token.TYPE {
+				continue
+			}
+			for _, spec := range gd.Specs {
+				ts, ok := spec.(*ast.TypeSpec)
+				if !ok || ts.Name.Name != name {
+					continue
+				}
+				st, ok := ts.Type.(*ast.StructType)
+				if !ok {
+					panic("Data is not a struct")
+				}
+				return st
+			}
+		}
+	}
+	panic("type " + name + " not found")
 }
 
 func ExamplePreorder() {
-	tt := pkg.TypeNames().ElementByName("Data")
-
-	for n := range ast.Preorder(tt.Node()) {
+	for n := range ast.Preorder(dataStruct) {
 		if f, ok := n.(*ast.Field); ok {
 			names := make([]string, 0, len(f.Names))
 			for _, ident := range f.Names {
@@ -32,13 +69,13 @@ func ExamplePreorder() {
 			if name == "Z" {
 				break
 			}
-			typ := pkg.GoPackage().TypesInfo.Types[f.Type]
+			typ := typesInfo.Types[f.Type]
 
 			fmt.Printf("Field: %s %s\n", name, typ.Type.String())
 		}
 	}
 
-	ast.Inspect(tt.Node(), func(n ast.Node) bool {
+	ast.Inspect(dataStruct, func(n ast.Node) bool {
 		if f, ok := n.(*ast.Field); ok {
 			names := make([]string, 0, len(f.Names))
 			for _, ident := range f.Names {
@@ -48,7 +85,7 @@ func ExamplePreorder() {
 			if name == "Z" {
 				return false
 			}
-			typ := pkg.GoPackage().TypesInfo.Types[f.Type]
+			typ := typesInfo.Types[f.Type]
 
 			fmt.Printf("Field: %s %s\n", name, typ.Type.String())
 		}

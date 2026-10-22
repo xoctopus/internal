@@ -4,8 +4,6 @@ import (
 	"runtime"
 	"strings"
 	"unique"
-
-	"github.com/xoctopus/internal/pkg/mem"
 )
 
 const (
@@ -30,7 +28,7 @@ func Unique() {
 
 	runtime.GC()
 
-	mem.OutputUsage("Unique")
+	OutputUsage("Unique")
 
 	runtime.KeepAlive(data)
 }
@@ -43,7 +41,7 @@ func WithoutUnique() {
 
 	runtime.GC()
 
-	mem.OutputUsage("WithoutUnique")
+	OutputUsage("WithoutUnique")
 
 	runtime.KeepAlive(data)
 }
